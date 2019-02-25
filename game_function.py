@@ -32,9 +32,7 @@ def check_keydown_events(event, ship, config, screen, bullets):
         ship.moving_left = True
     
     elif event.key == pygame.K_SPACE:
-        if len(bullets) < config.bullet_allowed:
-            new_bullet = Bullet(config, screen, ship)
-            bullets.add(new_bullet)
+        fire_bullet(ship, config, screen, bullets)
 
 def udpdate_screen(config, screen, ship, bullets):
     """ Update the images on screen and show the new screen"""
@@ -43,10 +41,18 @@ def udpdate_screen(config, screen, ship, bullets):
 
     for bullet in bullets.sprites():
         bullet.draw_bullet()
+        
+    #show the last screen
+    pygame.display.flip()
+
+def update_bullets(bullets):
+    bullets.update()
 
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
-    
-    #show the last screen
-    pygame.display.flip()
+
+def fire_bullet(ship, config, screen, bullets):
+    if len(bullets) < config.bullet_allowed:
+        new_bullet = Bullet(config, screen, ship)
+        bullets.add(new_bullet)

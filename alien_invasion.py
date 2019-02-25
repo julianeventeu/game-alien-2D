@@ -20,8 +20,8 @@ def run_game():
     while True:
         gameAux.check_events(ship, config, screen, bullets)
         ship.update()
-        bullets.update()
-        gameAux.udpdate_screen(config, screen, ship,bullets)
         
+        gameAux.update_bullets(bullets)
+        gameAux.udpdate_screen(config, screen, ship,bullets)
 
 run_game()

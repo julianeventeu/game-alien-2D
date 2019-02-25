@@ -43,5 +43,9 @@ def udpdate_screen(config, screen, ship, bullets):
     for bullet in bullets.sprites():
         bullet.draw_bullet()
 
+    for bullet in bullets.copy():
+        if bullet.rect.bottom <= 0:
+            bullets.remove(bullet)
+    
     #show the last screen
     pygame.display.flip()

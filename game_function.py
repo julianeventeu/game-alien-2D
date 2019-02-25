@@ -32,8 +32,9 @@ def check_keydown_events(event, ship, config, screen, bullets):
         ship.moving_left = True
     
     elif event.key == pygame.K_SPACE:
-        new_bullet = Bullet(config, screen, ship)
-        bullets.add(new_bullet)
+        if len(bullets) < config.bullet_allowed:
+            new_bullet = Bullet(config, screen, ship)
+            bullets.add(new_bullet)
 
 def udpdate_screen(config, screen, ship, bullets):
     """ Update the images on screen and show the new screen"""

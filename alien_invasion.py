@@ -4,7 +4,6 @@ from pygame.sprite import Group
 
 from settings import Settings
 from ship import Ship
-from alien import Alien
 import game_function as gameAux
 
 def run_game():
@@ -17,13 +16,15 @@ def run_game():
     
     ship = Ship(screen, config)
     bullets = Group()  
-    alien = Alien(config, screen)  
+    aliens = Group()
+
+    gameAux.create_fleet(config, screen, aliens)
 
     while True:
         gameAux.check_events(ship, config, screen, bullets)
         ship.update()
         
         gameAux.update_bullets(bullets)
-        gameAux.udpdate_screen(config, screen, ship,bullets,alien)
+        gameAux.udpdate_screen(config, screen, ship,bullets,aliens)
 
 run_game()

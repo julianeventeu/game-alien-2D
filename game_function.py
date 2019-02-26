@@ -37,14 +37,16 @@ def check_keydown_events(event, ship, config, screen, bullets):
     elif event.key == pygame.K_q:
         sys.exit()
 
-def udpdate_screen(config, screen, ship, bullets):
+def udpdate_screen(config, screen, ship, bullets, alien):
     """ Update the images on screen and show the new screen"""
     screen.fill(config.bg_color)
-    ship.blitme()
+    ship.blitme()    
 
     for bullet in bullets.sprites():
         bullet.draw_bullet()
-        
+    
+    alien.blitme()
+
     #show the last screen
     pygame.display.flip()
 
